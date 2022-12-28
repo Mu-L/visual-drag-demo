@@ -44,6 +44,13 @@
         <!-- 预览 -->
         <Preview v-if="isShowPreview" :is-screenshot="isScreenshot" @close="handlePreviewChange" />
         <AceEditor v-if="isShowAceEditor" @closeEditor="closeEditor" />
+        <!-- 广告代码，可直接删除 -->
+        <div
+            id="ad-div"
+            class="wwads-cn wwads-horizontal"
+            data-id="204"
+        >
+        </div>
     </div>
 </template>
 
@@ -83,7 +90,29 @@ export default {
 
         this.scale = this.canvasStyleData.scale
     },
+    mounted() {
+        this.addAD()
+    },
     methods: {
+        // 广告代码可直接删除
+        addAD() {
+            console.log('addAD')
+            let timer
+            const adDiv = $('#ad-div')
+            window.onresize = () => {
+                clearTimeout(timer)
+                timer = setTimeout(() => {
+                    if (window.innerWidth >= 1400) {
+                        adDiv.style.display = 'block'
+                        console.log('show')
+                    } else {
+                        adDiv.style.display = 'none'
+                        console.log('hidden')
+                    }
+                }, 500)
+            }
+        },
+
         handleScaleChange() {
             clearTimeout(this.timer)
             this.timer = setTimeout(() => {
@@ -97,7 +126,7 @@ export default {
         handleAceEditorChange() {
             this.isShowAceEditor = !this.isShowAceEditor
         },
-        
+
         closeEditor() {
             this.handleAceEditorChange()
         },

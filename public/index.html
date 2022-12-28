@@ -6,7 +6,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <script type="text/javascript" charset="UTF-8" src="https://cdn.wwads.cn/js/makemoney.js" async></script>
     <style>
+        #ad-div {
+            z-index: 1000;
+            height: 64px;
+            max-width: 200px;
+            position: fixed;
+            right: 0;
+            top: 0;
+            text-align: center;
+            background-color: red;
+        }
+
         .visual-loading-container {
             position: fixed;
             top: 0;
